@@ -21,6 +21,9 @@ public class Main {
      * Main method.
      *
      * @param args - array of arguments.
+     * Example: formatter -f file1.txt -f file2.java (read from file1.txt, write in file2.java)
+     * formatter -c -f file.java (read from console, write to file.java)
+     * formatter -c -c (read from the console and write to the console)
      */
     public static void main(final String[] args) {
         Logger logger = LoggerFactory.getLogger(ru.sevenbits.noskov.codeFormatter.Main.class);
