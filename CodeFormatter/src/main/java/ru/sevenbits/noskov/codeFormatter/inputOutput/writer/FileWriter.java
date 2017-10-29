@@ -34,7 +34,11 @@ public class FileWriter implements IWriter {
     }
 
     @Override
-    public void close() throws IOException {
-        fileOutputStream.close();
+    public void close() throws WriterException {
+        try {
+            fileOutputStream.close();
+        } catch (IOException e) {
+            throw new WriterException(e);
+        }
     }
 }

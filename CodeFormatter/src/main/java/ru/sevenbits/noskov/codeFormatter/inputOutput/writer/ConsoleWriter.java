@@ -28,8 +28,12 @@ public class ConsoleWriter implements IWriter {
     }
 
     @Override
-    public void close() throws IOException {
-        bufferedWriter.close();
+    public void close() throws WriterException {
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new WriterException(e);
+        }
     }
 
 }

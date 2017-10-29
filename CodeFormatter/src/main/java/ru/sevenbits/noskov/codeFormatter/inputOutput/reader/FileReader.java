@@ -25,8 +25,12 @@ public class FileReader implements IReader {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() throws ReaderException {
+        try {
             fileInputStream.close();
+        } catch (IOException e) {
+            throw new ReaderException(e);
+        }
     }
 
     @Override

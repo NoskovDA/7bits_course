@@ -28,7 +28,7 @@ public abstract class Formatter {
                 }
 
                 char previous = current;
-                current = (char) reader.read();
+                current = reader.read();
                 switch (current) {
                     case '{':
                         for (int i = 0; i < tabLevel * TAB_SIZE; i++) {

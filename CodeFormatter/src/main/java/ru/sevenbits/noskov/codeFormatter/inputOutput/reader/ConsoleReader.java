@@ -27,7 +27,7 @@ public class ConsoleReader implements IReader {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         scanner.close();
     }
 }

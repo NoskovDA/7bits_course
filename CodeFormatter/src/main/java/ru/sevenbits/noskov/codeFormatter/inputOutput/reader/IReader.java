@@ -5,7 +5,7 @@ import java.io.Closeable;
 /**
  * Reader interface.
  */
-public interface IReader extends Closeable {
+public interface IReader{
     /**
      *
      * @return read char.
@@ -19,4 +19,10 @@ public interface IReader extends Closeable {
      * @throws ReaderException
      */
     boolean isAvailable() throws ReaderException;
+
+    /**
+     *
+     * @throws ReaderException
+     */
+    void close() throws ReaderException;
 }
