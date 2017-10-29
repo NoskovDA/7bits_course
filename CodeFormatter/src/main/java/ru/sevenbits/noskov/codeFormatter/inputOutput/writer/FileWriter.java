@@ -1,12 +1,21 @@
-package ru.sevenbits.Noskov.codeFormatter.InputOutput.writer;
+package ru.sevenbits.noskov.codeFormatter.inputOutput.writer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class FileWriter implements IWriter{
+/**
+ * Writer to file.
+ */
+public class FileWriter implements IWriter {
     private FileOutputStream fileOutputStream;
 
+    /**
+     *Constructor
+     *
+     * @param path - path to file.
+     * @throws WriterException
+     */
     public FileWriter(Path path) throws WriterException {
         try {
             fileOutputStream = new FileOutputStream(path.toFile());
@@ -16,7 +25,7 @@ public class FileWriter implements IWriter{
     }
 
     @Override
-    public void write(char c) throws WriterException {
+    public void write(final char c) throws WriterException {
         try {
             fileOutputStream.write(c);
         } catch (IOException e) {

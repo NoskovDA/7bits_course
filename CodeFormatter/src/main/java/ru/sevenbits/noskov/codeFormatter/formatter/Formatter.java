@@ -1,13 +1,22 @@
-package ru.sevenbits.Noskov.codeFormatter.formatter;
+package ru.sevenbits.noskov.codeFormatter.formatter;
 
-import ru.sevenbits.Noskov.codeFormatter.InputOutput.reader.IReader;
-import ru.sevenbits.Noskov.codeFormatter.InputOutput.reader.ReaderException;
-import ru.sevenbits.Noskov.codeFormatter.InputOutput.writer.IWriter;
-import ru.sevenbits.Noskov.codeFormatter.InputOutput.writer.WriterException;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.IReader;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.ReaderException;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.IWriter;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
 
-public class Formatter {
-
-    public static void format(IReader reader, IWriter writer) throws FormatterException {
+/**
+ * Code formatter.
+ */
+public abstract class Formatter {
+    /**
+     * Format code.
+     *
+     * @param reader - object implemented IReader.
+     * @param writer - object implemented IWriter.
+     * @throws FormatterException
+     */
+    public static void format(final IReader reader, final IWriter writer) throws FormatterException {
         final int TAB_SIZE = 4;
         try {
             int tabLevel = 0;
@@ -19,7 +28,7 @@ public class Formatter {
                 }
 
                 char previous = current;
-                current = (char)reader.read();
+                current = (char) reader.read();
                 switch (current) {
                     case '{':
                         for (int i = 0; i < tabLevel * TAB_SIZE; i++) {

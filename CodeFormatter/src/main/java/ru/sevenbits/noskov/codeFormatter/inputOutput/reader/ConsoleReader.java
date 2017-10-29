@@ -1,18 +1,23 @@
-package ru.sevenbits.Noskov.codeFormatter.InputOutput.reader;
+package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class ConsoleReader implements IReader{
+/**
+ * Reader from console.
+ */
+public class ConsoleReader implements IReader {
     private Scanner scanner;
+
+    /**
+     * Constructor.
+     */
     public ConsoleReader() {
         this.scanner = new Scanner(System.in);
     }
 
     @Override
-    public int read() throws ReaderException {
+    public char read() throws ReaderException {
         return scanner.next().charAt(0);
     }
 

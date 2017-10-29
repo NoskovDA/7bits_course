@@ -1,5 +1,8 @@
-package ru.sevenbits.Noskov.codeFormatter.InputOutput;
+package ru.sevenbits.noskov.codeFormatter.inputOutput;
 
+/**
+ * Enum: arguments from command line.
+ */
 enum Parameters {
 
     FILE("-f"),
@@ -7,7 +10,7 @@ enum Parameters {
 
     private final String parameter;
 
-    private Parameters(String parameter) {
+    private Parameters(final String parameter) {
         this.parameter = parameter;
     }
     public String getParameter() {
