@@ -11,14 +11,7 @@ public interface IReader{
      * @return read char.
      * @throws ReaderException
      */
-    char read() throws ReaderException;
-
-    /**
-     *
-     * @return true if and only if this IReader can read next char.
-     * @throws ReaderException
-     */
-    boolean isAvailable() throws ReaderException;
+    int read() throws ReaderException;
 
     /**
      *

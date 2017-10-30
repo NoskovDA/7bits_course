@@ -33,16 +33,8 @@ public class Main {
             IWriter writer = readerAndWriter.getWriter();
 
             Formatter.format(reader, writer);
-            try {
-                reader.close();
-            } catch (IOException e) {
-                throw new ReaderException(e);
-            }
-            try {
-                writer.close();
-            } catch (IOException e) {
-                throw new WriterException(e);
-            }
+            reader.close();
+            writer.close();
         } catch (ReaderException e) {
             logger.error("Exception while reading.");
         } catch (WriterException e) {

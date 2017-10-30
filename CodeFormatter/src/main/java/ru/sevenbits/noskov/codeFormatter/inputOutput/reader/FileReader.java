@@ -1,24 +1,22 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 
 /**
  * Reader from file.
  */
 public class FileReader implements IReader {
-    private FileInputStream fileInputStream;
+    private Reader reader;
 
     /**
      *
      * @param path - path to file.
      * @throws ReaderException
      */
-    public FileReader(Path path) throws ReaderException {
+    public FileReader(final Path path) throws ReaderException {
         try {
-            fileInputStream = new FileInputStream(path.toFile());
+            reader = new InputStreamReader(new FileInputStream(path.toFile()));
         } catch (FileNotFoundException e) {
             throw new ReaderException(e);
         }
@@ -27,25 +25,16 @@ public class FileReader implements IReader {
     @Override
     public void close() throws ReaderException {
         try {
-            fileInputStream.close();
+            reader.close();
         } catch (IOException e) {
             throw new ReaderException(e);
         }
     }
 
     @Override
-    public char read() throws ReaderException {
+    public int read() throws ReaderException {
         try {
-            return (char) fileInputStream.read();
-        } catch (IOException e) {
-            throw new ReaderException(e);
-        }
-    }
-
-    @Override
-    public boolean isAvailable() throws ReaderException {
-        try {
-            return (fileInputStream.available()>0);
+            return reader.read();
         } catch (IOException e) {
             throw new ReaderException(e);
         }

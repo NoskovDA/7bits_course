@@ -22,13 +22,15 @@ public abstract class Formatter {
             int tabLevel = 0;
 
             char current = ' ';
-            while (reader.isAvailable()) {
+            char previous;
+            int currentInt = 0;
+            while (currentInt != -1) {
                 if (tabLevel < 0) {
                     tabLevel = 0;
                 }
-
-                char previous = current;
-                current = reader.read();
+                previous = current;
+                currentInt = reader.read();
+                current = (char) currentInt;
                 switch (current) {
                     case '{':
                         for (int i = 0; i < tabLevel * TAB_SIZE; i++) {
