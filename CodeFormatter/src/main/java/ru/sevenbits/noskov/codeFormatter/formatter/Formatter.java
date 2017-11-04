@@ -8,15 +8,10 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
 /**
  * Code formatter.
  */
-public abstract class Formatter {
-    /**
-     * Format code.
-     *
-     * @param reader - object implemented IReader.
-     * @param writer - object implemented IWriter.
-     * @throws FormatterException
-     */
-    public static void format(final IReader reader, final IWriter writer) throws FormatterException {
+public abstract class Formatter implements IFormatter {
+
+    @Override
+    public void format(final IReader reader, final IWriter writer) throws FormatterException {
         final int TAB_SIZE = 4;
         try {
             int tabLevel = 0;

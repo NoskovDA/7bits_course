@@ -11,11 +11,7 @@ public interface IReader{
      * @return read char.
      * @throws ReaderException
      */
-    int read() throws ReaderException;
+    char read() throws ReaderException;
 
-    /**
-     *
-     * @throws ReaderException
-     */
-    void close() throws ReaderException;
+    boolean hasNext() throws ReaderException;
 }

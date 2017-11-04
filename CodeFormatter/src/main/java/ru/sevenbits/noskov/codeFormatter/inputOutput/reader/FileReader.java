@@ -3,11 +3,17 @@ package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 import java.io.*;
 import java.nio.file.Path;
 
+import org.apache.commons.lang3.StringUtils;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.ErrorCodes;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
+
+
 /**
  * Reader from file.
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader, ICloseable  {
     private Reader reader;
+    private int current;
 
     /**
      *
@@ -23,18 +29,36 @@ public class FileReader implements IReader {
     }
 
     @Override
-    public void close() throws ReaderException {
+    public void close() throws Exception {
         try {
             reader.close();
         } catch (IOException e) {
-            throw new ReaderException(e);
+            throw new Exception(ErrorCodes.STREAM_READER_NOT_CLOSED.getErrorString().concat(FileReader.class.getSimpleName()), e);
         }
     }
 
     @Override
-    public int read() throws ReaderException {
+    public char read() throws ReaderException {
         try {
-            return reader.read();
+            if (current != -1) {
+                return (char) current;
+            } else {
+                if (hasNext()) {
+                    return (char) current;
+                } else {
+                    throw new ReaderException(ErrorCodes.END_STREAM.getErrorString());
+                }
+            }
+        } finally {
+            current = -1;
+        }
+    }
+
+    @Override
+    public boolean hasNext() throws ReaderException {
+        try {
+            current = reader.read();
+            return current >= 0;
         } catch (IOException e) {
             throw new ReaderException(e);
         }

@@ -14,11 +14,4 @@ public interface IWriter {
      * @throws WriterException
      */
     void write(char c) throws WriterException;
-
-    /**
-     *
-     * @throws WriterException
-     */
-    public void close() throws WriterException;
-
 }

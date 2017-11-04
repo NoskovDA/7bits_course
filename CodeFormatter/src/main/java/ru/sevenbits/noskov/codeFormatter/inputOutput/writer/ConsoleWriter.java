@@ -1,5 +1,8 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.writer;
 
+import ru.sevenbits.noskov.codeFormatter.inputOutput.ErrorCodes;
+import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -7,7 +10,7 @@ import java.io.OutputStreamWriter;
 /**
  * Writer to console.
  */
-public class ConsoleWriter implements IWriter {
+public class ConsoleWriter implements IWriter, ICloseable {
     private BufferedWriter bufferedWriter;
 
     /**
@@ -28,11 +31,11 @@ public class ConsoleWriter implements IWriter {
     }
 
     @Override
-    public void close() throws WriterException {
+    public void close() throws Exception {
         try {
             bufferedWriter.close();
         } catch (IOException e) {
-            throw new WriterException(e);
+            throw new Exception(ErrorCodes.STREAM_WRITER_NOT_CLOSED.getErrorString().concat(ConsoleWriter.class.getSimpleName()), e);
         }
     }
 
