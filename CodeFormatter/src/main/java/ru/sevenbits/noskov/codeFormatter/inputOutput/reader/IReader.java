@@ -3,7 +3,7 @@ package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 import java.io.Closeable;
 
 /**
- * Reader interface.
+ * reader interface.
  */
 public interface IReader{
     /**

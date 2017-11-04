@@ -9,7 +9,7 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
 
 
 /**
- * Reader from file.
+ * reader from file.
  */
 public class FileReader implements IReader, ICloseable  {
     private Reader reader;

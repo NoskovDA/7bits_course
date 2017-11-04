@@ -13,6 +13,7 @@ enum Parameters {
     private Parameters(final String parameter) {
         this.parameter = parameter;
     }
+
     public String getParameter() {
         return parameter;
     }

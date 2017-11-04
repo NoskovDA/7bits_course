@@ -8,7 +8,9 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
 /**
  * Code formatter.
  */
-public abstract class Formatter implements IFormatter {
+public class Formatter implements IFormatter {
+
+    public Formatter(){}
 
     @Override
     public void format(final IReader reader, final IWriter writer) throws FormatterException {
@@ -18,14 +20,12 @@ public abstract class Formatter implements IFormatter {
 
             char current = ' ';
             char previous;
-            int currentInt = 0;
-            while (currentInt != -1) {
+            while (reader.hasNext()) {
                 if (tabLevel < 0) {
                     tabLevel = 0;
                 }
                 previous = current;
-                currentInt = reader.read();
-                current = (char) currentInt;
+                current = reader.read();
                 switch (current) {
                     case '{':
                         for (int i = 0; i < tabLevel * TAB_SIZE; i++) {

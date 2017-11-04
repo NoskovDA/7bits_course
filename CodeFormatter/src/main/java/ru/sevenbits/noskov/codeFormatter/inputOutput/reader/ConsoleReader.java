@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 /**
- * Reader from console.
+ * reader from console.
  */
 public class ConsoleReader implements IReader, ICloseable {
     private Reader reader;

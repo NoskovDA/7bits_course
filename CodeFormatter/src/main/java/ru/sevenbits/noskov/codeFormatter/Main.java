@@ -1,5 +1,6 @@
 package ru.sevenbits.noskov.codeFormatter;
 
+import ru.sevenbits.noskov.codeFormatter.formatter.IFormatter;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ReaderAndWriter;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ReaderAndWriterException;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.IReader;
@@ -32,13 +33,8 @@ public class Main {
             IReader reader = readerAndWriter.getReader();
             IWriter writer = readerAndWriter.getWriter();
 
-            Formatter.format(reader, writer);
-            reader.close();
-            writer.close();
-        } catch (ReaderException e) {
-            logger.error("Exception while reading.");
-        } catch (WriterException e) {
-            logger.error("Exception while writing.");
+            IFormatter formatter = new Formatter();
+            formatter.format(reader, writer);
         } catch (FormatterException e) {
             logger.error("Exception while formatting.");
         } catch (ReaderAndWriterException e) {

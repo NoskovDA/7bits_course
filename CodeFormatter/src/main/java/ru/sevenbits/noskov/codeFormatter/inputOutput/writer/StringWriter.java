@@ -11,4 +11,8 @@ public class StringWriter implements IWriter {
     public void write(final char c) throws WriterException {
         stringBuilder.append(c);
     }
+
+    public String getString() {
+        return stringBuilder.toString();
+    }
 }

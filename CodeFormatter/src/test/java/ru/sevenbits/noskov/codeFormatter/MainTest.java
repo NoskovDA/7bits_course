@@ -14,9 +14,9 @@ public class MainTest {
     public void fileToFileTest(){
         String[] args = new String[4];
         args[0] = "-f";
-        args[1] = "/home/dminos/example/inputFile.java";
+        args[1] = "/example/inputFile.java";
         args[2] = "-f";
-        args[3] = "/home/dminos/example/outputFile.java";
+        args[3] = "/example/outputFile.java";
         Main.main(args);
     }
 
@@ -24,7 +24,7 @@ public class MainTest {
     public void fileToConsoleTest(){
         String[] args = new String[3];
         args[0] = "-f";
-        args[1] = "/home/dminos/example/inputFile.java";
+        args[1] = "/example/inputFile.java";
         args[2] = "-c";
         Main.main(args);
     }
