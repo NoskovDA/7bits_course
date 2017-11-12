@@ -11,7 +11,7 @@ import static junit.framework.Assert.fail;
 
 public class MainTest {
     @Test
-    public void fileToFileTest(){
+    public void fileToFileTest() {
         String[] args = new String[4];
         args[0] = "-f";
         args[1] = "/example/inputFile.java";
@@ -21,7 +21,7 @@ public class MainTest {
     }
 
     @Test
-    public void fileToConsoleTest(){
+    public void fileToConsoleTest() {
         String[] args = new String[3];
         args[0] = "-f";
         args[1] = "/example/inputFile.java";
@@ -30,7 +30,7 @@ public class MainTest {
     }
 
     @Test
-    public void consoleToConsoleTest(){
+    public void consoleToConsoleTest() {
         String[] args = new String[2];
         args[0] = "-c";
         args[1] = "-c";
