@@ -12,7 +12,7 @@ public class ReaderException extends Throwable {
      *
      * @param e - caught ReaderException..
      */
-    public ReaderException(IOException e) {
+    public ReaderException(final IOException e) {
         super(e);
     }
 
@@ -21,7 +21,7 @@ public class ReaderException extends Throwable {
      *
      * @param message - exception message..
      */
-    public ReaderException(String message) {
+    public ReaderException(final String message) {
         super(message);
     }
 }

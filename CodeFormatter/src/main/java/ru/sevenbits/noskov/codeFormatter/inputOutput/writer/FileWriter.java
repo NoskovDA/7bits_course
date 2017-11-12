@@ -19,7 +19,7 @@ public class FileWriter implements IWriter, ICloseable {
      *Constructor
      *
      * @param path - path to file.
-     * @throws WriterException
+     * @throws WriterException when can't open reader with this input Path.
      */
     public FileWriter(final Path path) throws WriterException {
         try {

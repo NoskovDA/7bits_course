@@ -10,7 +10,7 @@ public class StringWriterTest {
     public void simpleTest() {
         try {
             String s = "string;";
-            StringWriter stringWriter = new StringWriter(s);
+            StringWriter stringWriter = new StringWriter();
             for (int i=0; i<s.length(); i++) {
                 stringWriter.write(s.charAt(i));
             }

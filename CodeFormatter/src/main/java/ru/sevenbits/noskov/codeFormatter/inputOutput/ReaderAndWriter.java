@@ -24,7 +24,7 @@ public final class ReaderAndWriter {
     /**
      *
      * @param args - arguments from command
-     * @throws ReaderAndWriterException
+     * @throws ReaderAndWriterException when input String[] does not match pattern
      */
     public ReaderAndWriter(final String[] args) throws ReaderAndWriterException {
         if ((args.length < 2) || (args.length > 4)) {

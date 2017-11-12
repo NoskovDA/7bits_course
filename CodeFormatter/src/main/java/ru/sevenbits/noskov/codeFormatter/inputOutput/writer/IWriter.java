@@ -11,7 +11,7 @@ public interface IWriter {
      * write char
      *
      * @param c - character for writing.
-     * @throws WriterException
+     * @throws WriterException when something goes wrong​
      */
     void write(char c) throws WriterException;
 }

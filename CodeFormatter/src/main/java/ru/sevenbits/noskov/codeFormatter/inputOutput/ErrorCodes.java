@@ -14,9 +14,14 @@ public enum ErrorCodes {
 
     private final String errorString;
 
-    private ErrorCodes(String errorString) {
+    /**
+     * Constructor
+     * @param errorString - string with error description
+     */
+    private ErrorCodes(final String errorString) {
         this.errorString = errorString;
     }
+
     public String getErrorString() {
         return errorString;
     }

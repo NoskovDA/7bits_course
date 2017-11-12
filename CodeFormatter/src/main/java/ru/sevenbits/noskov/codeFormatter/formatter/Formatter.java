@@ -10,6 +10,9 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
  */
 public class Formatter implements IFormatter {
 
+    /**
+     * Constructor
+     */
     public Formatter(){}
 
     @Override
@@ -28,8 +31,10 @@ public class Formatter implements IFormatter {
                 current = reader.read();
                 switch (current) {
                     case '{':
-                        for (int i = 0; i < tabLevel * TAB_SIZE; i++) {
-                            writer.write(' ');
+                        if (previous == '\n') {
+                            for (int i = 0; i < tabLevel * TAB_SIZE; i++) {
+                                writer.write(' ');
+                            }
                         }
                         writer.write(current);
                         writer.write('\n');

@@ -1,10 +1,16 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.writer;
 
+/**
+ * Writer to string.
+ */
 public class StringWriter implements IWriter {
     private StringBuilder stringBuilder;
 
-    public StringWriter(final String string) {
-        this.stringBuilder = new StringBuilder(string);
+    /**
+     * Constructor
+     */
+    public StringWriter() {
+        this.stringBuilder = new StringBuilder();
     }
 
     @Override

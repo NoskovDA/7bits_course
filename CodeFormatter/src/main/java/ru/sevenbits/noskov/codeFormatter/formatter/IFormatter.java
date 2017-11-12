@@ -3,13 +3,16 @@ package ru.sevenbits.noskov.codeFormatter.formatter;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.IReader;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.IWriter;
 
+/**
+ * Formatter interface.
+ */
 public interface IFormatter {
     /**
      * Format code.
      *
      * @param reader - object implemented IReader.
      * @param writer - object implemented IWriter.
-     * @throws FormatterException
+     * @throws FormatterException when something goes wrong​
      */
-    void format(final IReader reader, final IWriter writer) throws FormatterException;
+    void format(IReader reader, IWriter writer) throws FormatterException;
 }

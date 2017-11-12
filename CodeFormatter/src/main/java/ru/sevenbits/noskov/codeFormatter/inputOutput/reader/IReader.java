@@ -1,17 +1,20 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 
-import java.io.Closeable;
-
 /**
  * reader interface.
  */
-public interface IReader{
+public interface IReader {
     /**
      *
      * @return read char.
-     * @throws ReaderException
+     * @throws ReaderException when something goes wrong​
      */
     char read() throws ReaderException;
 
+    /**
+     *
+     * @return true if and only if this reader has another char of input
+     * @throws ReaderException when something goes wrong​
+     */
     boolean hasNext() throws ReaderException;
 }

@@ -1,9 +1,12 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.reader;
 
-import java.io.*;
-import java.nio.file.Path;
 
-import org.apache.commons.lang3.StringUtils;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.IOException;
+import java.nio.file.Path;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ErrorCodes;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
 
@@ -18,7 +21,7 @@ public class FileReader implements IReader, ICloseable  {
     /**
      *
      * @param path - path to file.
-     * @throws ReaderException
+     * @throws ReaderException - when can't open reader with this input Path.
      */
     public FileReader(final Path path) throws ReaderException {
         try {
