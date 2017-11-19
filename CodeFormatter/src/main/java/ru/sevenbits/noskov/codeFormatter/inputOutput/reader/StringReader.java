@@ -32,7 +32,7 @@ public class StringReader implements IReader {
     }
 
     @Override
-    public boolean hasNext() throws ReaderException {
+    public boolean hasNext(){
         return index < string.length();
     }
 }

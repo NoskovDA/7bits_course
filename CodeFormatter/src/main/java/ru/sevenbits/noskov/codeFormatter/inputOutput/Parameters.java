@@ -5,7 +5,7 @@ package ru.sevenbits.noskov.codeFormatter.inputOutput;
  */
 enum Parameters {
 
-    FILE("-f"),
+    STRING("-s"),
     CONSOLE("-c");
 
     private final String parameter;

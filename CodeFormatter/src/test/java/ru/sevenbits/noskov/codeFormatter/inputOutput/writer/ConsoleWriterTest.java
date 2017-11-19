@@ -14,7 +14,7 @@ public class ConsoleWriterTest {
                 consoleWriter.write(s.charAt(i));
         }
         consoleWriter.close();
-        } catch (WriterException | Exception e) {
+        } catch (WriterException e) {
             fail(e.getMessage());
         }
     }

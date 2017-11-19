@@ -6,7 +6,7 @@ import java.io.IOException;
  *
  * Exception classes implemented IReader.
  */
-public class ReaderException extends Throwable {
+public class ReaderException extends Exception {
     /**
      * Constructor.
      *
@@ -23,5 +23,13 @@ public class ReaderException extends Throwable {
      */
     public ReaderException(final String message) {
         super(message);
+    }
+
+    public ReaderException() {
+        super();
+    }
+
+    public ReaderException(String msg, IOException e) {
+        super(msg, e);
     }
 }

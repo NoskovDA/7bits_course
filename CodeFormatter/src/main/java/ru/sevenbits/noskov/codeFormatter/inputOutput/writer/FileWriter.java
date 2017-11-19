@@ -1,5 +1,6 @@
 package ru.sevenbits.noskov.codeFormatter.inputOutput.writer;
 
+import ru.sevenbits.noskov.codeFormatter.inputOutput.CloseableWriter;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ErrorCodes;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
 
@@ -12,7 +13,7 @@ import java.nio.file.Path;
 /**
  * Writer to file.
  */
-public class FileWriter implements IWriter, ICloseable {
+public class FileWriter implements CloseableWriter {
     private Writer writer;
 
     /**
@@ -39,11 +40,11 @@ public class FileWriter implements IWriter, ICloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws WriterException {
         try {
             writer.close();
         } catch (IOException e) {
-            throw new Exception(ErrorCodes.STREAM_WRITER_NOT_CLOSED.getErrorString().concat(FileWriter.class.getSimpleName()), e);
+            throw new WriterException(ErrorCodes.STREAM_WRITER_NOT_CLOSED.getErrorString().concat(FileWriter.class.getSimpleName()), e);
         }
     }
 }

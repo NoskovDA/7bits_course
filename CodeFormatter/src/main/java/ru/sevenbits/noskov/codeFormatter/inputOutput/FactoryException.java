@@ -6,14 +6,14 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
 /**
  * ReaderAndWriter class exception.
  */
-public class ReaderAndWriterException extends Throwable {
+public class FactoryException extends Exception {
 
     /**
      * Constructor.
      *
      * @param message - exception message.
      */
-    public ReaderAndWriterException(final String message) {
+    public FactoryException(final String message) {
         super(message);
     }
 
@@ -22,7 +22,7 @@ public class ReaderAndWriterException extends Throwable {
      *
      * @param e - caught WriterException.
      */
-    public ReaderAndWriterException(final WriterException e) {
+    public FactoryException(final WriterException e) {
         super(e);
     }
 
@@ -31,7 +31,7 @@ public class ReaderAndWriterException extends Throwable {
      *
      * @param e - caught ReaderException.
      */
-    public ReaderAndWriterException(final ReaderException e) {
+    public FactoryException(final ReaderException e) {
         super(e);
     }
 }

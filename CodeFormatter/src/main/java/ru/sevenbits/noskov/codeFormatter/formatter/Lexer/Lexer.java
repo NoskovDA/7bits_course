@@ -1,36 +1,96 @@
 package ru.sevenbits.noskov.codeFormatter.formatter.Lexer;
 
+import ru.sevenbits.noskov.codeFormatter.formatter.Token.IToken;
+import ru.sevenbits.noskov.codeFormatter.formatter.Token.Token;
+import ru.sevenbits.noskov.codeFormatter.formatter.Token.TokenException;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.IReader;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.ReaderException;
-import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.StringWriter;
-import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.WriterException;
 
 public class Lexer implements ILexer {
-    private StringWriter writer;
+    private IReader reader;
+    private char current;
+
+
+    public Lexer(IReader reader) throws ReaderException {
+        this.reader = reader;
+        current = reader.read();
+    }
 
     @Override
-    public String disassemble(IReader reader) throws ReaderException, WriterException {
-            char current;
-            while (reader.hasNext()) {
-                current = reader.read();
-                switch (current) {
-                    case '{':
-                        writer.write(current);
-                        return writer.getString();
+    public IToken readToken() throws ReaderException, TokenException {
+        char previous = 0; //null in utf8
+        int stop = 1;
+        StringBuilder stringBuilder = new StringBuilder();
+        do {
 
-                    case '}':
-                        writer.write(current);
-                        return writer.getString();
+            if ((previous == 0 || previous == '\n') && (current == ' ')) {
+                int i =0;
+                previous = current;
+                while (reader.hasNext() && current == ' ') {
+                    current = reader.read();
+                    stringBuilder.append(previous);
+                }
+                System.out.println(stringBuilder.length());
+                return new Token("spaces at the beginning of the line", stringBuilder);
+            }
 
-                    case ';':
-                        writer.write(current);
-                        return writer.getString();
+            if (previous == 0) {
+                if (current == '{') {
+                    previous = current;
+                    if (reader.hasNext()) {
+                        current = reader.read();
+                    }
+                    return new Token("opening brace", new StringBuilder().append(previous));
+                } else {
+                    if (current == '}') {
+                        previous = current;
+                        if (reader.hasNext()) {
+                            current = reader.read();
+                        }
+                        return new Token("closing brace", new StringBuilder().append(previous));
+                    } else {
+                        if (current == ';') {
+                            previous = current;
+                            if (reader.hasNext()) {
+                                current = reader.read();
+                            }
+                            return new Token("semicolon", new StringBuilder().append(previous));
+                        } else {
+                            if (current == '\n') {
+                                previous = current;
+                                if (reader.hasNext()) {
+                                    current = reader.read();
+                                }
+                                return new Token("new line", new StringBuilder().append(previous));
 
-                    default:
-                        writer.write(current);
-                        break;
+                            }
+                        }
+                    }
                 }
             }
-            return writer.getString();
+
+            if (current == '{' || current == '}' || current == ';' || current == '\n') { //change to map
+                return new Token("something", stringBuilder) ;
+            }
+
+            previous = current;
+            stringBuilder.append(previous);
+
+
+            if (reader.hasNext()) {
+                current = reader.read();
+            } else {
+                if (stop == 0) {
+                    current = 0;
+                }
+                stop--;
+            }
+        } while (reader.hasNext());
+        return new Token("something",stringBuilder);
+    }
+
+    @Override
+    public boolean hasMoreTokens() {
+        return reader.hasNext() || current != 0;
     }
 }

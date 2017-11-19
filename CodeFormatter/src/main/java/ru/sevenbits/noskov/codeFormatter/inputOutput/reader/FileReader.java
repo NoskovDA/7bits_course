@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.IOException;
 import java.nio.file.Path;
+
+import ru.sevenbits.noskov.codeFormatter.inputOutput.CloseableReader;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ErrorCodes;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
 
@@ -14,7 +16,7 @@ import ru.sevenbits.noskov.codeFormatter.inputOutput.ICloseable;
 /**
  * reader from file.
  */
-public class FileReader implements IReader, ICloseable  {
+public class FileReader implements CloseableReader {
     private Reader reader;
     private int current;
 
@@ -26,17 +28,18 @@ public class FileReader implements IReader, ICloseable  {
     public FileReader(final Path path) throws ReaderException {
         try {
             reader = new InputStreamReader(new FileInputStream(path.toFile()));
-        } catch (FileNotFoundException e) {
+            current = reader.read();
+        } catch (IOException e) {
             throw new ReaderException(e);
         }
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws ReaderException {
         try {
             reader.close();
         } catch (IOException e) {
-            throw new Exception(ErrorCodes.STREAM_READER_NOT_CLOSED.getErrorString().concat(FileReader.class.getSimpleName()), e);
+            throw new ReaderException(ErrorCodes.STREAM_READER_NOT_CLOSED.getErrorString().concat(FileReader.class.getSimpleName()), e);
         }
     }
 
@@ -44,27 +47,22 @@ public class FileReader implements IReader, ICloseable  {
     public char read() throws ReaderException {
         try {
             if (current != -1) {
-                return (char) current;
-            } else {
-                if (hasNext()) {
+                try {
                     return (char) current;
-                } else {
-                    throw new ReaderException(ErrorCodes.END_STREAM.getErrorString());
+                } finally {
+                    current = reader.read();
                 }
+            } else {
+                throw new ReaderException(ErrorCodes.END_STREAM.getErrorString());
             }
-        } finally {
-            current = -1;
+        } catch (IOException e) {
+            throw new ReaderException();
         }
     }
 
     @Override
-    public boolean hasNext() throws ReaderException {
-        try {
-            current = reader.read();
-            return current >= 0;
-        } catch (IOException e) {
-            throw new ReaderException(e);
-        }
+    public boolean hasNext() {
+        return current >= 0;
     }
 
 }

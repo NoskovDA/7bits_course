@@ -16,5 +16,5 @@ public interface IReader {
      * @return true if and only if this reader has another char of input
      * @throws ReaderException when something goes wrong​
      */
-    boolean hasNext() throws ReaderException;
+    boolean hasNext();
 }

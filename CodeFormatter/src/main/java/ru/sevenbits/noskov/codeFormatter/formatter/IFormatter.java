@@ -1,5 +1,6 @@
 package ru.sevenbits.noskov.codeFormatter.formatter;
 
+import ru.sevenbits.noskov.codeFormatter.formatter.Lexer.ILexer;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.reader.IReader;
 import ru.sevenbits.noskov.codeFormatter.inputOutput.writer.IWriter;
 
@@ -10,9 +11,9 @@ public interface IFormatter {
     /**
      * Format code.
      *
-     * @param reader - object implemented IReader.
+     * @param lexer - object implemented ILexer.
      * @param writer - object implemented IWriter.
      * @throws FormatterException when something goes wrong​
      */
-    void format(IReader reader, IWriter writer) throws FormatterException;
+    void format(ILexer lexer, IWriter writer) throws FormatterException;
 }

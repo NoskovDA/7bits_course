@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Exception classes implemented IWriter.
  */
-public class WriterException extends Throwable {
+public class WriterException extends Exception {
     /**
      * Constructor.
      *
@@ -13,5 +13,9 @@ public class WriterException extends Throwable {
      */
     public WriterException(final IOException e) {
         super(e);
+    }
+
+    public WriterException(String msg, IOException e) {
+        super(msg, e);
     }
 }
